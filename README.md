@@ -13,5 +13,5 @@ The GDScript code written to make the game can be found in the /scripts/ folder.
 
 Runnable builds of the game can be found in:
 
-- /WindowsRunnable/ — Windows executable
-- /LinuxRunnable/ — Linux executable
+- /WindowsRunnable/ - Windows executable
+- /LinuxRunnable/ - Linux executable
