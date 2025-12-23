@@ -8,7 +8,6 @@ var velocity = Vector2.ZERO
 var lifetime = 2.0
 
 func _ready():
-	collision_mask = 1
 	body_entered.connect(_on_body_entered)
 
 	await get_tree().create_timer(lifetime).timeout

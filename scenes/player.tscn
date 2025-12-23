@@ -240,6 +240,7 @@ texture = ExtResource("13_u3qlf")
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(24, 194)
 collision_layer = 4
+collision_mask = 5
 floor_max_angle = 0.0
 script = ExtResource("1_u3td7")
 web_scene = ExtResource("2_wsaus")
