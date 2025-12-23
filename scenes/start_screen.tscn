@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://crr31hf4xteks"]
+
+[ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_whyq1"]
+[ext_resource type="Texture2D" uid="uid://djl3s66q46wum" path="res://assets/button.png" id="2_hlyk0"]
+[ext_resource type="Texture2D" uid="uid://d4nrr0osec0oe" path="res://assets/button 2.png" id="2_vgxmo"]
+[ext_resource type="Texture2D" uid="uid://brtrwck4wh3sl" path="res://assets/button 1.png" id="3_1l3nv"]
+[ext_resource type="Texture2D" uid="uid://mdi3trjfw7bi" path="res://assets/bg_ 1.png" id="5_5kv5y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nxr16"]
+texture = ExtResource("2_vgxmo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a0jhk"]
+texture = ExtResource("3_1l3nv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rrypr"]
+texture = ExtResource("2_hlyk0")
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_whyq1")
+
+[node name="StartButton" type="Button" parent="."]
+top_level = true
+z_index = 3
+layout_mode = 0
+offset_left = 149.0
+offset_top = 67.0
+offset_right = 464.0
+offset_bottom = 174.0
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxTexture_nxr16")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a0jhk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_rrypr")
+icon_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+light_mask = 0
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_5kv5y")

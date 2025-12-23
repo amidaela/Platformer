@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1t8x7lh8g1hj"]
+
+[ext_resource type="Script" path="res://scripts/web.gd" id="1_pwrav"]
+[ext_resource type="Texture2D" uid="uid://rihp7d5qo6js" path="res://assets/player/Untitled_Artwork.png" id="2_6rw6q"]
+[ext_resource type="Texture2D" uid="uid://cyw6y7m5rxr7r" path="res://assets/player/web_decay.png" id="2_fg5fs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38e4f"]
+atlas = ExtResource("2_fg5fs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spjqm"]
+atlas = ExtResource("2_fg5fs")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giw70"]
+atlas = ExtResource("2_fg5fs")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7k25"]
+atlas = ExtResource("2_fg5fs")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7swom"]
+atlas = ExtResource("2_fg5fs")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxud7"]
+atlas = ExtResource("2_6rw6q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bjguj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38e4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spjqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giw70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7k25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7swom")
+}],
+"loop": true,
+"name": &"decay",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxud7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wg1yb"]
+radius = 5.0
+height = 12.0
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_pwrav")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bjguj")
+animation = &"decay"
+frame = 3
+frame_progress = 0.654248
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wg1yb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

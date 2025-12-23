@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk7ykg70cdlnm"]
+
+[ext_resource type="Script" path="res://scripts/global_stats.gd" id="1_7my4v"]
+
+[node name="GlobalStats" type="Node"]
+script = ExtResource("1_7my4v")
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 999999.0
+one_shot = true

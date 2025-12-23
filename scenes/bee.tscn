@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=3 uid="uid://bpbrxbn3ad70o"]
+
+[ext_resource type="Script" path="res://scripts/bee.gd" id="1_4u3fb"]
+[ext_resource type="Texture2D" uid="uid://dm58let3ialyu" path="res://assets/enemies/bee_idle.png" id="1_6ee81"]
+[ext_resource type="PackedScene" uid="uid://b5gnycw0x1cy3" path="res://scenes/projectile.tscn" id="2_k4xkf"]
+[ext_resource type="Texture2D" uid="uid://d2myuavh8adj5" path="res://assets/enemies/bee.png" id="4_f41lv"]
+[ext_resource type="Texture2D" uid="uid://dhrq18o5yoruq" path="res://assets/enemies/bee_web_left.png" id="5_1gin5"]
+[ext_resource type="Texture2D" uid="uid://qtdas8h4j4od" path="res://assets/enemies/bee_web_right.png" id="6_r1veb"]
+[ext_resource type="Texture2D" uid="uid://dik1tkjnywvv1" path="res://assets/health_bg.png" id="7_ledad"]
+[ext_resource type="Texture2D" uid="uid://bjrscc0ql6r3j" path="res://assets/health.png" id="8_cfkla"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ucm6"]
+atlas = ExtResource("1_6ee81")
+region = Rect2(2, 0, 22, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii3uw"]
+atlas = ExtResource("1_6ee81")
+region = Rect2(39, 0, 22, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io68n"]
+atlas = ExtResource("4_f41lv")
+region = Rect2(4, 0, 22, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0qfu"]
+atlas = ExtResource("4_f41lv")
+region = Rect2(41, 0, 22, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ll0ar"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ucm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii3uw")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io68n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0qfu")
+}],
+"loop": true,
+"name": &"right",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1gin5")
+}],
+"loop": true,
+"name": &"web_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_r1veb")
+}],
+"loop": true,
+"name": &"web_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rht7x"]
+height = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mn6e7"]
+texture = ExtResource("7_ledad")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_plplg"]
+texture = ExtResource("8_cfkla")
+
+[sub_resource type="GDScript" id="GDScript_eehe1"]
+script/source = "extends ProgressBar
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[node name="Bee" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 7
+script = ExtResource("1_4u3fb")
+projectile_scene = ExtResource("2_k4xkf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ll0ar")
+animation = &"idle_left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_rht7x")
+
+[node name="GroundRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 200)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 3
+offset_left = -14.0
+offset_top = -18.0
+offset_right = 11.0
+offset_bottom = -14.0
+theme_override_styles/background = SubResource("StyleBoxTexture_mn6e7")
+theme_override_styles/fill = SubResource("StyleBoxTexture_plplg")
+max_value = 40.0
+show_percentage = false
+script = SubResource("GDScript_eehe1")

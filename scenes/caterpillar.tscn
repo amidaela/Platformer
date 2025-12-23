@@ -1,0 +1,173 @@
+[gd_scene load_steps=24 format=3 uid="uid://biuwo13h8ptf6"]
+
+[ext_resource type="Texture2D" uid="uid://cuxkttgkbekgl" path="res://assets/enemies/caterpillar_idle.png" id="1_h61ox"]
+[ext_resource type="Script" path="res://scripts/caterpillar.gd" id="1_q85fp"]
+[ext_resource type="Texture2D" uid="uid://dqhakx3qqxw70" path="res://assets/enemies/caterpillar_left_hurt.png" id="2_1yvsr"]
+[ext_resource type="Texture2D" uid="uid://nuothxl7q7f6" path="res://assets/enemies/caterpillar_right_hurt.png" id="3_ivupb"]
+[ext_resource type="Texture2D" uid="uid://dw1med6xmbsns" path="res://assets/enemies/caterpillar_right.png" id="3_jo7i7"]
+[ext_resource type="Texture2D" uid="uid://2ossp48aupoe" path="res://assets/enemies/caterpillar_web_left.png" id="4_x1f2t"]
+[ext_resource type="Texture2D" uid="uid://duirklklexwro" path="res://assets/enemies/caterpillar_web_right.png" id="5_i2jdf"]
+[ext_resource type="Texture2D" uid="uid://dik1tkjnywvv1" path="res://assets/health_bg.png" id="6_06mwd"]
+[ext_resource type="Texture2D" uid="uid://bjrscc0ql6r3j" path="res://assets/health.png" id="7_x1l4x"]
+[ext_resource type="Script" path="res://scripts/water_detection.gd" id="8_uyv21"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax38d"]
+atlas = ExtResource("2_1yvsr")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jr2d"]
+atlas = ExtResource("2_1yvsr")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhjsh"]
+atlas = ExtResource("3_ivupb")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01l3c"]
+atlas = ExtResource("3_ivupb")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad4mv"]
+atlas = ExtResource("1_h61ox")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghi4u"]
+atlas = ExtResource("1_h61ox")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjvej"]
+atlas = ExtResource("3_jo7i7")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6m0l"]
+atlas = ExtResource("3_jo7i7")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jlu2c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax38d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jr2d")
+}],
+"loop": true,
+"name": &"hurt_left",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhjsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01l3c")
+}],
+"loop": true,
+"name": &"hurt_right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad4mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghi4u")
+}],
+"loop": true,
+"name": &"idle_left",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjvej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6m0l")
+}],
+"loop": true,
+"name": &"right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_x1f2t")
+}],
+"loop": true,
+"name": &"web_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_i2jdf")
+}],
+"loop": true,
+"name": &"web_right",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4keck"]
+texture = ExtResource("6_06mwd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_65jra"]
+texture = ExtResource("7_x1l4x")
+
+[sub_resource type="GDScript" id="GDScript_ar53n"]
+script/source = "extends ProgressBar
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_frldg"]
+radius = 13.0
+height = 44.0
+
+[node name="caterpillar" type="CharacterBody2D" groups=["enemies"]]
+collision_mask = 5
+floor_max_angle = 1.55334
+floor_snap_length = 0.0
+platform_floor_layers = 4294967291
+platform_wall_layers = 4
+script = ExtResource("1_q85fp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_jlu2c")
+animation = &"idle_left"
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+polygon = PackedVector2Array(-11.9999, 22, 3.99992, -22, 13.9999, -22.0001, 14.0001, 20.9999, -4.99992, 22)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = 3
+offset_left = -14.0
+offset_top = -18.0
+offset_right = 11.0
+offset_bottom = -14.0
+theme_override_styles/background = SubResource("StyleBoxTexture_4keck")
+theme_override_styles/fill = SubResource("StyleBoxTexture_65jra")
+max_value = 50.0
+show_percentage = false
+script = SubResource("GDScript_ar53n")
+
+[node name="WaterDetection" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("8_uyv21")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetection"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_frldg")
+
+[connection signal="body_entered" from="WaterDetection" to="WaterDetection" method="_on_body_entered"]
+[connection signal="body_exited" from="WaterDetection" to="WaterDetection" method="_on_body_exited"]
+[connection signal="water_state_changed" from="WaterDetection" to="." method="_on_water_detection_water_state_changed"]

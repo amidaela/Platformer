@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgxt2yvtpcsf2"]
+
+[ext_resource type="Script" path="res://scripts/gate.gd" id="1_n2wav"]
+[ext_resource type="Texture2D" uid="uid://fp1mmk5vcs3f" path="res://assets/terrain/gate.png" id="1_xs53v"]
+[ext_resource type="FontFile" uid="uid://8kmghl2q7px4" path="res://assets/Abaddon_Fonts_v1.2/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="3_2jum1"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_05nya"]
+a = Vector2(-6, 0)
+b = Vector2(-6, 224)
+
+[node name="Gate" type="StaticBody2D" groups=["gate"]]
+position = Vector2(640, 0)
+script = ExtResource("1_n2wav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 0)
+shape = SubResource("SegmentShape2D_05nya")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-16, 112)
+texture = ExtResource("1_xs53v")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -628.0
+offset_top = 7.0
+offset_right = -5.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.305882, 0.235294, 0.27451, 1)
+theme_override_fonts/font = ExtResource("3_2jum1")
+text = "you must defeat all enemies in this level!"
+horizontal_alignment = 1
+uppercase = true

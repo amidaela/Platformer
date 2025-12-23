@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://duwkq2v6xqqq2"]
+
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_hw5kl"]
+[ext_resource type="PackedScene" uid="uid://rog4rn4lrrlh" path="res://scenes/room.tscn" id="2_8p078"]
+[ext_resource type="PackedScene" uid="uid://csskmwclw3d4w" path="res://scenes/player.tscn" id="3_vi38w"]
+[ext_resource type="FontFile" uid="uid://8kmghl2q7px4" path="res://assets/Abaddon_Fonts_v1.2/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="4_fyvgg"]
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource("1_hw5kl")
+
+[node name="Room" parent="." instance=ExtResource("2_8p078")]
+
+[node name="Player" parent="." instance=ExtResource("3_vi38w")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 37.0
+offset_right = 638.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0.262745, 0.239216, 0.286275, 1)
+theme_override_fonts/font = ExtResource("4_fyvgg")
+theme_override_font_sizes/font_size = 16
+text = "Welcome!"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 446.0
+offset_top = 8.0
+offset_right = 636.0
+offset_bottom = 34.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.329412, 0.25098, 0.294118, 1)
+theme_override_fonts/font = ExtResource("4_fyvgg")
+theme_override_font_sizes/font_size = 16
+text = "press here to skip tutorial"
+flat = true
+icon_alignment = 1
