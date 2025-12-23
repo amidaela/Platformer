@@ -11,7 +11,8 @@ The GDScript code written to make the game can be found in the /scripts/ folder.
 
 ### Playable Builds
 
-Runnable builds of the game can be found in:
+Runnable builds of the game can be found in the folders:
 
-- /WindowsRunnable/ - Windows executable
-- /LinuxRunnable/ - Linux executable
+- /WindowsRunnable/
+- /LinuxRunnable/
+
