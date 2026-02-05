@@ -3,12 +3,12 @@ extends Area2D
 @export var speed = 300
 @export var disable_time = 2.0  # how long enemy is disabled
 var direction = Vector2.ZERO
-var lifetime = 0.1  # web starts to disappear
+var lifetime = 0.5  # web disappears
 
 func _ready():
 
 	$Sprite2D.play("decay")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(lifetime).timeout
 	queue_free()
 
 func setup(shoot_direction: Vector2):

@@ -2,6 +2,7 @@ extends Node
 
 var current_scene: Node = null
 
+
 var player_stats = {
 	"health": 100,
 }
@@ -43,3 +44,8 @@ func load_tutorial():
 	current_scene = preload("res://scenes/tutorial.tscn").instantiate()
 	add_child(current_scene)
 	current_scene.tut_done.connect(_on_tut_done)
+	
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("restart"):
+		current_scene.queue_free()
+		load_start_screen()

@@ -1,9 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmt4nh7n2a1nf"]
+[gd_scene load_steps=5 format=3 uid="uid://dmt4nh7n2a1nf"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_qt1do"]
 [ext_resource type="PackedScene" uid="uid://rog4rn4lrrlh" path="res://scenes/room.tscn" id="2_apiwn"]
+[ext_resource type="FontFile" uid="uid://8kmghl2q7px4" path="res://assets/Abaddon_Fonts_v1.2/Abaddon_Fonts_v1.2/Abaddon Bold.ttf" id="3_sqj61"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igdaw"]
+size = Vector2(20, 319)
 
 [node name="World" type="Node2D" groups=["room"]]
 script = ExtResource("1_qt1do")
 
 [node name="Room" parent="." instance=ExtResource("2_apiwn")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-10, 161.5)
+shape = SubResource("RectangleShape2D_igdaw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 4
+offset_left = 8.0
+offset_top = 291.0
+offset_right = 192.0
+offset_bottom = 311.0
+theme_override_fonts/normal_font = ExtResource("3_sqj61")
+text = "Press R to restart game"
